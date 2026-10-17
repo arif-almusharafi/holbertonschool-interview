@@ -19,13 +19,17 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             parts = line.split()
+
             try:
-                status = int(parts[-2])
                 size = int(parts[-1])
             except (ValueError, IndexError):
                 continue
-
             total_size += size
+
+            try:
+                status = int(parts[-2])
+            except (ValueError, IndexError):
+                status = None
             if status in valid_codes:
                 status_counts[status] = status_counts.get(status, 0) + 1
 
