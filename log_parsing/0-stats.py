@@ -19,12 +19,10 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             parts = line.split()
-            if len(parts) != 9:
-                continue
             try:
                 status = int(parts[-2])
                 size = int(parts[-1])
-            except ValueError:
+            except (ValueError, IndexError):
                 continue
 
             total_size += size
